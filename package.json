@@ -1,16 +1,9 @@
 {
-  "name": "webpack-template",
+  "name": "nodejs-basic-informational-site",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "type": "module",
-  "scripts": {
-    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
-    "watch": "node --experimental-vm-modules node_modules/jest/bin/jest.js --watch",
-    "deploy": "git subtree push --prefix dist origin gh-pages",
-    "dev": "webpack serve --open --config webpack.dev.cjs",
-    "build": "webpack --config webpack.prod.cjs"
-  },
   "keywords": [],
   "author": "",
   "license": "ISC",
