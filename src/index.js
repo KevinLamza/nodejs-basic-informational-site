@@ -13,15 +13,18 @@ http
     }
     fs.readFile(filename, function (err, data) {
       if (err) {
-        res.writeHead(404, { 'Content-type': 'text/html' });
-        // fs.readFile('./404.html', function (err, data) {
-        //   if (err) {
-        //     return res.end('Something went wrong');
-        //   }
-        //   res.write(data);
-        //   return res.end();
-        // });
-        return res.end('404 Not Found');
+        // Attempt to serve custom 404.html if file is not found
+        fs.readFile('./404.html', function (error404, errorPageData) {
+          if (error404) {
+            // If 404.html is missing, send a default error message
+            res.writeHead(404, { 'Content-Type': 'text/html' });
+            return res.end('<h1>404 Not Found</h1>');
+          }
+          // Serve the custom 404.html page
+          res.writeHead(404, { 'Content-Type': 'text/html' });
+          return res.end(errorPageData);
+        });
+        return; // Ensure no further code runs after handling the error
       }
       res.writeHead(200, { 'Content-type': 'text/html' });
       res.write(data);
